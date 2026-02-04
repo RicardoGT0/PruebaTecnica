@@ -1,7 +1,7 @@
 import { Table, Column, Model, DataType } from 'sequelize-typescript';
 import { UserCreationAttrs } from '../dto/create-user.dto';
 
-@Table
+@Table({ tableName: 'users' })
 export class User extends Model<User, UserCreationAttrs> {
   @Column({
     type: DataType.INTEGER,
@@ -11,15 +11,21 @@ export class User extends Model<User, UserCreationAttrs> {
   declare id: number;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
   })
   declare name: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     unique: true,
     allowNull: false,
   })
   declare email: string;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: false,
+  })
+  declare role: string;
 }

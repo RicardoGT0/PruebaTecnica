@@ -1,8 +1,10 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UsersModule } from './users/users.module';
+import { ProvidersModule } from './providers/providers.module';
+import { RoleMiddleware } from './common/middleware/role.middleware';
 
 @Module({
   imports: [
@@ -17,9 +19,14 @@ import { UsersModule } from './users/users.module';
       synchronize: true, // Solo para desarrollo
     }),
     UsersModule,
+    ProvidersModule,
   ],
 
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(RoleMiddleware).forRoutes('*');
+  }
+}
