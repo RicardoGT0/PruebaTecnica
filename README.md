@@ -18,74 +18,9 @@ El proyecto implementa un **módulo de onboarding parcialmente operativo** centr
 - **Frontend**: Angular 19 (standalone components)
 - **Base de Datos**: PostgreSQL
 
-### Estructura de Módulos
-
-#### Backend
-```
-src/
-├── providers/        ← ✅ Implementado
-│   ├── entities
-│   ├── dto
-│   ├── services
-│   └── controllers
-├── users/            ← ⚠️ Estructura básica
-├── document/         ← ✅ Implementado (apoyo a proveedores)
-└── common/
-    └── middleware/   ← Gestión de roles
-```
-
-#### Frontend
-```
-src/app/
-├── pages/
-│   ├── dashboard/    ← ✅ Listado de proveedores
-│   └── formProvider/ ← ✅ Formulario de alta
-├── components/
-│   └── listaProveedores/
-├── services/
-│   └── proveedores.service.ts
-└── interfaces/
-    ├── Proveedor
-    ├── Documento
-    ├── Usuario
-    └── Contacto
-```
-
----
-
 ## ✅ Funcionalidades Implementadas
 
 ### 1. **Módulo de Proveedores** (Completo)
-
-#### Entidad Proveedor
-```
-- nombre_legal
-- nombre_comercial
-- rfc (RFC validado)
-- dirección
-- teléfono (validado con patrón mexicano)
-- email
-- contacto (objeto: nombre, teléfono, email)
-- monto_estimado_anual (con validación numérica)
-- estado_proveedor (Estados: Pendiente → Activo/Rechazado)
-- requiere_aprobacion_adicional (bool, automático si monto > 500,000)
-- documentos (relación con tabla documents)
-```
-
-#### Flujo de Validación (Estados)
-1. **Borrador** → Creación del proveedor con `estado_proveedor: 'Pendiente'`
-2. **Pendiente de Documentos** → Se requieren 3 documentos:
-   - Comprobante de domicilio
-   - Constancia fiscal
-   - Identificación del representante legal
-3. **Validación de Documentos** → Revisor marca cada documento como:
-   - `VALIDO`
-   - `RECHAZADO`
-   - Con comentarios del revisor
-4. **Aprobación Final** → 
-   - Si todos documentos están `VALIDO` → `estado_proveedor: 'Activo'`
-   - Si documentos `RECHAZADO` → `estado_proveedor: 'Rechazado'`
-5. **Operativo** → Proveedor activo en el sistema
 
 #### Endpoints Backend Implementados
 ```
@@ -276,6 +211,8 @@ POST   /providers/:id/return-to-draft → Devolver a borrador
 
 ## 🔍 Conclusión
 
-He desarrollado este proyecto full stack en el lapso de los tres días estipulados. Efectivamente, como aspecto crítico, falta la separación de roles; sin embargo, esto conllevaría de uno a dos días adicionales de trabajo. Aun así, considero que el proyecto actual demuestra claramente mi capacidad y habilidad como programador web.
+He desarrollado este proyecto full stack dentro del plazo de tres días estipulado. Como aspecto crítico, reconozco que falta la separación de roles; sin embargo, implementar esta funcionalidad habría requerido entre uno y dos días adicionales de trabajo. Aun así, considero que el proyecto actual demuestra claramente mi capacidad y habilidades como programador web.
 
-Para la finalización del proyecto se requieren cinco semanas adicionales de desarrollo para llegar a un MVP operativo, considerando que solo hay un programador a cargo.
+En cuanto al flujo de trabajo, permití que la IA me guiara en la definición de los requisitos de desarrollo. Las funcionalidades que quedaron fuera se debieron principalmente a limitaciones de tiempo y a la decisión de priorizar aquellos elementos que mejor reflejan mis habilidades técnicas. Como mencioné anteriormente, con mayor disponibilidad de tiempo, el siguiente módulo a desarrollar sería el sistema de autenticación (login) y la separación de roles.
+
+Para la finalización del proyecto y alcanzar un MVP completamente operativo, se estiman aproximadamente cinco semanas adicionales de desarrollo, considerando que el trabajo estaría a cargo de un solo programador.
