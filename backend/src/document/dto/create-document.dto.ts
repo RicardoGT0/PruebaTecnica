@@ -6,7 +6,7 @@ export class CreateDocumentDto {
   @ApiProperty()
   nombre_archivo: string;
   @ApiProperty()
-  meta: any;
+  meta: string;
   @ApiProperty()
   fecha_emision: Date;
   @ApiProperty()

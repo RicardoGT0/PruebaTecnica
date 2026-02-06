@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
 import { ProvidersService } from './providers.service';
 import { CreateProviderDto } from './dto/create-provider.dto';
 import { UpdateProviderDto } from './dto/update-provider.dto';
@@ -34,7 +34,7 @@ export class ProvidersController {
     return this.providersService.findOneWithRelations(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOperation({ summary: 'Actualizar proveedor por ID' })
   @ApiHeader({ name: 'x-user-role', required: false })
   @ApiResponse({ status: 200, description: 'Proveedor actualizado' })

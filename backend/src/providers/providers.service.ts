@@ -13,7 +13,7 @@ export class ProvidersService {
   async createDraft(dto: CreateProviderDto) {
     const provider = await this.providerModel.create({
       ...dto,
-      estado_proveedor: 'BORRADOR',
+      estado_proveedor: 'Pendiente',
       requiere_aprobacion_adicional: dto.monto_estimado_anual > 500000,
     });
 
@@ -23,9 +23,6 @@ export class ProvidersService {
   async update(id: string, dto: UpdateProviderDto) {
     const provider = await this.providerModel.findByPk(id);
     if (!provider) throw new BadRequestException('Provider not found');
-
-    if (provider.estado_proveedor !== 'BORRADOR')
-      throw new BadRequestException('No editable');
 
     await provider.update(dto);
 
@@ -47,13 +44,13 @@ export class ProvidersService {
     const provider = await this.providerModel.findByPk(id);
     if (!provider) throw new BadRequestException('Proveedor no encontrado');
 
-    if (provider.estado_proveedor !== 'BORRADOR')
+    if (provider.estado_proveedor !== 'Pendiente')
       throw new BadRequestException('No se puede enviar');
 
     // Validaciones mínimas
     if (!provider.rfc) throw new BadRequestException('RFC requerido');
 
-    provider.estado_proveedor = 'EN_VALIDACION';
+    provider.estado_proveedor = 'Pendiente';
     await provider.save();
 
     return provider;
@@ -63,7 +60,7 @@ export class ProvidersService {
     const doc = await this.documentModel.create({
       provider_id: id,
       ...dto,
-      estado: 'PENDIENTE',
+      estado: 'Pendiente',
     });
 
     return doc;
@@ -92,7 +89,7 @@ export class ProvidersService {
     const invalid = provider.documentos.some((d) => d.estado !== 'VALIDO');
     if (invalid) throw new BadRequestException('Documentos incompletos');
 
-    provider.estado_proveedor = 'APROBADO';
+    provider.estado_proveedor = 'Activo';
     await provider.save();
 
     return provider;
@@ -102,7 +99,7 @@ export class ProvidersService {
     const provider = await this.providerModel.findByPk(id);
     if (!provider) throw new BadRequestException('Proveedor no encontrado');
 
-    provider.estado_proveedor = 'RECHAZADO';
+    provider.estado_proveedor = 'Rechazado';
     await provider.save();
 
     return provider;
@@ -112,7 +109,7 @@ export class ProvidersService {
     const provider = await this.providerModel.findByPk(id);
     if (!provider) throw new BadRequestException('Proveedor no encontrado');
 
-    provider.estado_proveedor = 'BORRADOR';
+    provider.estado_proveedor = 'Pendiente';
     await provider.save();
 
     return provider;

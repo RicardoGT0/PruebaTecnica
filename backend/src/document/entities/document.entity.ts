@@ -33,7 +33,7 @@ export class Document extends Model<Document, DocumentCreationAttrs> {
 
   @Column(DataType.TEXT) declare tipo: string;
   @Column(DataType.TEXT) declare nombre_archivo: string;
-  @Column(DataType.JSON) declare meta: any;
+  @Column(DataType.TEXT) declare meta: string;
 
   @Column(DataType.DATE) declare fecha_emision: Date;
   @Column(DataType.DATE) declare fecha_vencimiento: Date;
