@@ -1,0 +1,226 @@
+<form class="container mt-4 p-4 bg-white rounded shadow" [formGroup]="proveedorForm">
+  <div class="row">
+    <div class="col-12">
+      <h1>Formulario de Proveedor</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <details>
+        <summary>
+          <h2 class="fs-4">Información Empresa</h2>
+        </summary>
+        <div class="row">
+          <div class="col-12 py-2">
+            <label class="form-label fw-bold">Nombre Legal</label>
+            <input type="text"
+              placeholder="Nombre Legal"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('nombre_legal')"
+              formControlName="nombre_legal">
+            @if(isFieldInvalid('nombre_legal')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('nombre_legal') }}
+              </div>
+            }
+          </div>
+
+          <div class="col-12 py-2">
+            <label class="form-label fw-bold">Nombre Comercial</label>
+            <input type="text"
+              placeholder="Nombre Comercial"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('nombre_comercial')"
+              formControlName="nombre_comercial">
+            @if(isFieldInvalid('nombre_comercial')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('nombre_comercial') }}
+              </div>
+            }
+          </div>
+
+          <div class="col-12 py-2">
+            <label class="form-label fw-bold">RFC</label>
+            <input type="text"
+              placeholder="RFC"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('rfc')"
+              formControlName="rfc">
+            <div class="form-text text-muted">Ej: ABC123456XYZ</div>
+            @if(isFieldInvalid('rfc')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('rfc') }}
+              </div>
+            }
+          </div>
+
+          <div class="col-12 py-2">
+            <label class="form-label fw-bold">Dirección Fiscal</label>
+            <input type="text"
+              placeholder="Dirección Fiscal"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('direccion')"
+              formControlName="direccion">
+            @if(isFieldInvalid('direccion')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('direccion') }}
+              </div>
+            }
+          </div>
+
+          <div class="col-12 col-sm-6 py-2">
+            <label class="form-label fw-bold">Teléfono Empresa</label>
+            <input type="text"
+              placeholder="Teléfono"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('telefono')"
+              formControlName="telefono">
+            <div class="form-text text-muted">10 dígitos o con código de país</div>
+            @if(isFieldInvalid('telefono')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('telefono') }}
+              </div>
+            }
+          </div>
+
+          <div class="col-12 col-sm-6 py-2">
+            <label class="form-label fw-bold">Email Empresa</label>
+            <input type="email"
+              placeholder="Email"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('email')"
+              formControlName="email">
+            @if(isFieldInvalid('email')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('email') }}
+              </div>
+            }
+          </div>
+
+          <div class="col-12 py-2">
+            <label class="form-label fw-bold">Monto Estimado Anual (MXN)</label>
+            <input type="text"
+              placeholder="Monto Estimado Anual"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('monto_estimado_anual')"
+              formControlName="monto_estimado_anual">
+            @if(isFieldInvalid('monto_estimado_anual')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('monto_estimado_anual') }}
+              </div>
+            }
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <details>
+        <summary>
+          <h2 class="fs-4">Información de Contacto</h2>
+        </summary>
+        <div class="row">
+          <div class="col-12 py-2">
+            <label class="form-label fw-bold">Nombre del Contacto</label>
+            <input type="text"
+              placeholder="Nombre del Contacto"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('nombre_contacto')"
+              formControlName="nombre_contacto">
+            @if(isFieldInvalid('nombre_contacto')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('nombre_contacto') }}
+              </div>
+            }
+          </div>
+
+          <div class="col-12 py-2">
+            <label class="form-label fw-bold">Teléfono Contacto</label>
+            <input type="text"
+              placeholder="Teléfono Contacto"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('telefono_contacto')"
+              formControlName="telefono_contacto">
+            <div class="form-text text-muted">10 dígitos o con código de país</div>
+            @if(isFieldInvalid('telefono_contacto')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('telefono_contacto') }}
+              </div>
+            }
+          </div>
+
+          <div class="col-12 py-2">
+            <label class="form-label fw-bold">Email Contacto</label>
+            <input type="email"
+              placeholder="Email Contacto"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('email_contacto')"
+              formControlName="email_contacto">
+            @if(isFieldInvalid('email_contacto')) {
+              <div class="invalid-feedback d-block">
+                {{ getErrorMessage('email_contacto') }}
+              </div>
+            }
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <details>
+        <summary>
+          <h2 class="fs-4">Documentacion</h2>
+        </summary>
+        <div class="row">
+          @for(documento of documentosRequeridos; track documento.key) {
+            <div class="col-12 col-sm-8 py-2">
+              <label class="form-label fw-bold" [ngClass]="{'text-success': hasFile(documento.key)}">
+                {{ documento.label }}
+                @if(hasFile(documento.key)) {
+                  <small class="text-success">
+                    - {{ uploadedFiles[documento.key]()?.name }}
+                  </small>
+                }
+              </label>
+              <input type="file"
+                class="form-control"
+                (change)="onFileSelected($event, documento.key)"
+                [accept]="documento.tipos" />
+              <div class="form-text text-muted">PDF/JPG/PNG. Máx 10MB.</div>
+            </div>
+            <div class="col-12 col-sm-4 py-2 my-auto">
+              <button type="button"
+                class="btn btn-secondary w-100"
+                (click)="downloadFile(documento.key)"
+                [disabled]="!hasFile(documento.key)">
+                Ver Documento
+              </button>
+            </div>
+          }
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col-12 offset-sm-6 col-sm-3 py-2">
+      <button type="button" class="btn btn-secondary w-100" (click)="cancelar()">
+        Cancelar
+      </button>
+    </div>
+    <div class="col-12 col-sm-3 py-2">
+      <button type="button"
+        class="btn btn-primary w-100"
+        (click)="guardar()"
+        [disabled]="proveedorForm.invalid && submitted()">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+

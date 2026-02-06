@@ -1,0 +1,40 @@
+<div class="container mt-4 p-4 bg-white rounded shadow">
+
+  <div class="row">
+    <div class="col-12 col-sm-8">
+      <h1>Lista de proveedores</h1>
+    </div>
+    <div class="col-12 col-sm-4 text-end my-auto">
+      <a class="btn btn-primary w-100" [routerLink]="['/formProvider', '0']">Agregar Proveedor</a>
+    </div>
+  </div>
+  <div class="row my-4">
+    <div class="col-4 col-md-3 p-2">
+      <select id="filtros" class="form-select w-100" (change)="filtrarPorEstatus(filtros.value)"
+        [value]="filtrosValue()" #filtros>
+        @for (key of estadosProveedorKeys(); track key) {
+        <option [value]="key">
+          {{ proveedoresService.estadosProveedor()[key] }}
+        </option>
+        }
+      </select>
+    </div>
+    <div class="col-8 col-md-5 p-2">
+      <input type="text" placeholder="Buscar Nombre legal, Comercial o RFC" class="form-control"
+        [value]="buscadorValue()" (input)="buscadorValue.set(buscador.value)" (keyup.enter)="buscarProveedores()"
+        (keyup.backspace)="filtrarPorEstatus(filtrosValue(), false)" #buscador />
+    </div>
+    <div class="col-6 col-sm-3 col-md-2 offset-sm-6 offset-md-0 p-2">
+      <button class="btn btn-secondary w-100" (click)="limpiarFiltros()">limpiar</button>
+    </div>
+    <div class="col-6 col-sm-3 col-md-2 p-2">
+      <button class="btn btn-primary w-100" (click)="actualizarProveedores()">Actualizar</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <lista-proveedores [data]="proveedoresService.proveedoresFiltrados()"></lista-proveedores>
+    </div>
+  </div>
+
+</div>

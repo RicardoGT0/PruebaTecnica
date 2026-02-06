@@ -4,6 +4,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "rootDir": "./",
+    "paths": {
+      "@interfaces/*": ["./src/app/interfaces"],
+      "@services/*": ["./src/app/services"],
+      "@components/*": ["./src/app/components"],
+      "@environments/*": ["./src/environments"]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

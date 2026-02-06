@@ -1,0 +1,38 @@
+<div class="table-responsive overflow-y-scroll border rounded" style="height: 70vh;">
+  <table class="table table-striped w-100">
+    <tr class="text-center">
+      <th>Nombre Legal</th>
+      <th>Nombre Comercial</th>
+      <th>RFC</th>
+      <th>Dirección</th>
+      <th>Teléfono</th>
+      <th>Email</th>
+      <th>Contacto</th>
+      <th>Monto Estimado Anual</th>
+      <th>Estado Proveedor</th>
+      <th>Requiere Aprobación Adicional</th>
+      <th>Acciones</th>
+    </tr>
+    <tbody>
+      @for (proveedor of data(); track $index;) {
+      @if(proveedor?.contacto?.nombre){
+        <tr class="align-middle">
+        <td>{{ proveedor.nombre_legal }}</td>
+        <td>{{ proveedor.nombre_comercial }}</td>
+        <td>{{ proveedor.rfc }}</td>
+        <td>{{ proveedor.direccion }}</td>
+        <td>{{ proveedor.telefono }}</td>
+        <td>{{ proveedor.email }}</td>
+        <td>{{ proveedor.contacto.nombre }}</td>
+        <td class="text-end">{{ proveedor.monto_estimado_anual | currency }}</td>
+        <td class="text-center">{{ proveedor.estado_proveedor }}</td>
+        <td class="text-center">{{ proveedor.requiere_aprobacion_adicional ? 'Si' : 'No' }}</td>
+        <td>
+          <a class="btn btn-secondary" [routerLink]="['/formProvider', proveedor.id]">Editar</a>
+        </td>
+      </tr>
+      }
+      }
+    </tbody>
+  </table>
+</div>
